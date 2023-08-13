@@ -1,7 +1,10 @@
+import { KafkaModule } from "@/core/kafka/kafka.module";
+
 import { Module, Provider } from "@nestjs/common";
 import { CqrsModule } from "@nestjs/cqrs";
 
 import { CreateRoomHandler } from "./application/handlers/command-handlers/create-room.command";
+import { RoomCreatedHandler } from "./application/handlers/event-handlers/room-created.handler";
 import { FindRoomsHandler } from "./application/handlers/query-handlers/find-rooms.handler";
 import { InjectionToken } from "./application/injection-token";
 import { RoomsQueryImplement } from "./infrastructure/queries/rooms-query.implement";
@@ -18,10 +21,10 @@ const infrastructure: Provider[] = [
         useClass: RoomsRepositoryImplement,
     },
 ];
-const application = [FindRoomsHandler, CreateRoomHandler];
+const application = [FindRoomsHandler, RoomCreatedHandler, CreateRoomHandler];
 
 @Module({
-    imports: [CqrsModule],
+    imports: [CqrsModule, KafkaModule],
     controllers: [RoomController],
     providers: [...infrastructure, ...application],
 })
