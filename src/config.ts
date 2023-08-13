@@ -1,4 +1,4 @@
-import { IsBoolean, IsInt, IsString, validateSync } from "class-validator";
+import { IsArray, IsBoolean, IsInt, IsString, validateSync } from "class-validator";
 import * as dotenv from "dotenv";
 
 import { Logger } from "@nestjs/common";
@@ -29,6 +29,15 @@ class Configuration {
 
     @IsInt()
     readonly PORT = Number(process.env.PORT);
+
+    @IsString()
+    readonly KAFKA_CLIENT_ID = process.env.KAFKA_CLIENT_ID as string;
+
+    @IsArray()
+    readonly KAFKA_BROKERS = process.env.KAFKA_BROKERS.split(", ");
+
+    @IsString()
+    readonly KAFKA_CONSUMER_GROUP_ID = process.env.KAFKA_CONSUMER_GROUP_ID as string;
 
     constructor() {
         const error = validateSync(this);

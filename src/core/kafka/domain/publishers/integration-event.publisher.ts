@@ -25,8 +25,6 @@ export class IntegrationEventPublisherImplement implements IntegrationEventPubli
     @Inject() private readonly kafkaNotificationPublisher: KafkaNotificationMessagePublisher;
 
     async publish(name: Topic, body: IEvent): Promise<void> {
-        console.log(`Publishing event ${name} with body ${JSON.stringify(body)}`);
-
         await this.kafkaNotificationPublisher.publish(name, {
             name,
             body,

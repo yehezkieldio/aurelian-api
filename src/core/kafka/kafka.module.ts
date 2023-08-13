@@ -1,3 +1,6 @@
+import { Config } from "@/config";
+import { Partitioners } from "kafkajs";
+
 import { Global, Module } from "@nestjs/common";
 import { ClientsModule, Transport } from "@nestjs/microservices";
 
@@ -16,11 +19,16 @@ import { KafkaNotificationMessagePublisher } from "./domain/publishers/kafka-not
                 transport: Transport.KAFKA,
                 options: {
                     client: {
-                        brokers: ["localhost:9092"],
+                        clientId: Config.KAFKA_CLIENT_ID,
+                        brokers: Config.KAFKA_BROKERS,
                         ssl: false,
                     },
                     consumer: {
-                        groupId: "aurealian-kafka-consumer",
+                        groupId: Config.KAFKA_CONSUMER_GROUP_ID,
+                    },
+                    producer: {
+                        allowAutoTopicCreation: true,
+                        createPartitioner: Partitioners.LegacyPartitioner,
                     },
                 },
             },

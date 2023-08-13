@@ -6,6 +6,7 @@ import { Config } from "./config";
 
 async function bootstrap() {
     const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter());
+
     await app.listen(Config.PORT);
 }
 bootstrap();

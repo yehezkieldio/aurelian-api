@@ -14,8 +14,6 @@ export class RoomCreatedHandler implements IEventHandler<RoomCreatedEvent> {
     @Inject(INTEGRATION_EVENT_PUBLISHER) private readonly integrationEventPublisher: IntegrationEventPublisher;
 
     public async handle(event: RoomCreatedEvent): Promise<void> {
-        console.log("RoomCreatedHandler.handle event", event);
-
         await this.integrationEventPublisher.publish(Topic.ROOM_CREATED, new RoomCreated(event.id, event.number));
     }
 }
