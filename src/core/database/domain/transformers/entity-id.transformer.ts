@@ -1,6 +1,6 @@
 export const ENTITY_ID_TRANSFORMER = "EntityIdTransformer";
 
 export interface EntityIdTransformer {
-    from: (dbData: Buffer) => string;
-    to: (stringId: string) => Buffer;
+    from: (dbData: string) => string;
+    to: (stringId: string) => string;
 }

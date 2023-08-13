@@ -16,7 +16,7 @@ export class RoomController {
 
     @Post()
     public async createRoom(@Body() body: CreateRoomRequestDTO): Promise<void> {
-        const command = new CreateRoomCommand(body.id, body.number, body.availability);
+        const command = new CreateRoomCommand(body.number, body.availability);
 
         return await this.commandBus.execute(command);
     }

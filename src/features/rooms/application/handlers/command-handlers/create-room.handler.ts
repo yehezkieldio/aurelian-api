@@ -1,8 +1,8 @@
-import { RoomCreatedEvent } from "@/features/rooms/domain/events/room-created.event";
+import { RoomFactory } from "@/features/rooms/domain/factories/room.factory";
 import { RoomRepository } from "@/features/rooms/domain/repositories/room.repository";
 
 import { Inject } from "@nestjs/common";
-import { CommandHandler, EventBus, ICommandHandler } from "@nestjs/cqrs";
+import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
 
 import { CreateRoomCommand } from "../../contracts/commands/create-room.command";
 import { InjectionToken } from "../../injection-token";
@@ -10,11 +10,16 @@ import { InjectionToken } from "../../injection-token";
 @CommandHandler(CreateRoomCommand)
 export class CreateRoomHandler implements ICommandHandler<CreateRoomCommand, void> {
     @Inject(InjectionToken.ROOMS_REPOSITORY) private readonly roomsRepository: RoomRepository;
-    constructor(readonly eventBus: EventBus) {}
+    @Inject() private readonly roomFactory: RoomFactory;
 
     public async execute(command: CreateRoomCommand): Promise<void> {
-        console.log("CreateRoomHandler.execute command", command);
+        const room = this.roomFactory.create({
+            ...command,
+            id: await this.roomsRepository.newId(),
+        });
 
-        this.eventBus.publish(new RoomCreatedEvent(command.id, command.number));
+        room.create();
+        await this.roomsRepository.save(room);
+        room.commit();
     }
 }

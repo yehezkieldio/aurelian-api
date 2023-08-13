@@ -11,18 +11,6 @@ export class FindRoomsHandler implements IQueryHandler<FindRoomsQuery, FindRooms
     @Inject(InjectionToken.ROOMS_QUERY) readonly roomsQuery: RoomsQuery;
 
     public async execute(query: FindRoomsQuery): Promise<FindRoomsResult> {
-        console.log("FindRoomsHandler.execute query", query);
-
-        const rooms = {
-            rooms: [
-                {
-                    id: 1,
-                    number: 1,
-                    avalability: true,
-                },
-            ],
-        };
-
-        return rooms;
+        return this.roomsQuery.find(query);
     }
 }

@@ -1,4 +1,4 @@
-import { Module } from "@nestjs/common";
+import { Global, Module } from "@nestjs/common";
 import { ClientsModule, Transport } from "@nestjs/microservices";
 
 import {
@@ -7,6 +7,7 @@ import {
 } from "./domain/publishers/integration-event.publisher";
 import { KafkaNotificationMessagePublisher } from "./domain/publishers/kafka-notification.publisher";
 
+@Global()
 @Module({
     imports: [
         ClientsModule.register([

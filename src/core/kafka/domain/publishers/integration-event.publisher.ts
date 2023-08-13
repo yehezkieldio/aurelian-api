@@ -11,7 +11,7 @@ export const INTEGRATION_EVENT_PUBLISHER = "IntegrationEventPublisher";
 
 export class RoomCreated {
     constructor(
-        readonly id: number,
+        readonly id: string,
         readonly number: number
     ) {}
 }

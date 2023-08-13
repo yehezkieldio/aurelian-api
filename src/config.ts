@@ -1,4 +1,5 @@
 import { IsBoolean, IsInt, IsString, validateSync } from "class-validator";
+import * as dotenv from "dotenv";
 
 import { Logger } from "@nestjs/common";
 
@@ -37,4 +38,5 @@ class Configuration {
     }
 }
 
+dotenv.config();
 export const Config = new Configuration();

@@ -1,13 +1,15 @@
-import { BaseEntity, Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, PrimaryColumn } from "typeorm";
+
+import { BaseEntity } from "./base.entity";
 
 @Entity()
 export class RoomEntity extends BaseEntity {
-    @PrimaryColumn({ type: "binary", length: 16 })
-    id: Buffer;
+    @PrimaryColumn({ type: "uuid" })
+    id: string;
 
-    @Column({ type: "number" })
+    @Column({ type: "integer" })
     number: number;
 
     @Column({ type: "boolean" })
-    available: boolean;
+    availability: boolean;
 }

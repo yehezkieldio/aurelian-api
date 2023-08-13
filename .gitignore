@@ -37,3 +37,12 @@ lerna-debug.log*
 # yarn
 yarn-error.log
 .yarn/cache
+
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local

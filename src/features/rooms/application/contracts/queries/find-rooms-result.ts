@@ -3,9 +3,9 @@ import { IQueryResult } from "@nestjs/cqrs";
 export class FindRoomsResult implements IQueryResult {
     constructor(
         readonly rooms: Readonly<{
-            id: number;
+            id: string;
             number: number;
-            avalability: boolean;
+            availability: boolean;
         }>[]
     ) {}
 }

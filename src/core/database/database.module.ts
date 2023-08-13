@@ -1,9 +1,10 @@
-import { Module } from "@nestjs/common";
+import { Global, Module } from "@nestjs/common";
 
 import { DatabaseService } from "./domain/services/database.service";
 import { ENTITY_ID_TRANSFORMER } from "./domain/transformers/entity-id.transformer";
 import { EntityIdTransformerImplement } from "./infrastructure/transformers/entity-id-transformer.implement";
 
+@Global()
 @Module({
     providers: [
         DatabaseService,

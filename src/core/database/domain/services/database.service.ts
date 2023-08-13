@@ -46,6 +46,7 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy {
         username: Config.DATABASE_USER,
         password: Config.DATABASE_PASSWORD,
         synchronize: Config.DATABASE_SYNC,
+        ssl: false,
     });
 
     async onModuleInit() {
