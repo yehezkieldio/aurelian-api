@@ -6,6 +6,6 @@ class Rooms {
     readonly avalability: boolean;
 }
 
-export class FindRoomsResponseDto extends FindRoomsResult {
+export class FindRoomsResponseDTO extends FindRoomsResult {
     readonly rooms: Rooms[];
 }
