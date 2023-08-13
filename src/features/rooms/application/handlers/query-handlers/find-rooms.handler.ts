@@ -1,9 +1,10 @@
 import { Inject } from "@nestjs/common";
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
-import { FindRoomsQuery } from "../../contracts/queries/find-rooms.query";
+
 import { FindRoomsResult } from "../../contracts/queries/find-rooms-result";
-import { InjectionToken } from "../../injection-token";
+import { FindRoomsQuery } from "../../contracts/queries/find-rooms.query";
 import { RoomsQuery } from "../../contracts/queries/rooms-query";
+import { InjectionToken } from "../../injection-token";
 
 @QueryHandler(FindRoomsQuery)
 export class FindRoomsHandler implements IQueryHandler<FindRoomsQuery, FindRoomsResult> {

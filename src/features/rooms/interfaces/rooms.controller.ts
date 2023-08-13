@@ -1,10 +1,11 @@
 import { Body, Controller, Get, Post, Query } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
-import { FindRoomsQuery } from "../application/contracts/queries/find-rooms.query";
+
 import { CreateRoomCommand } from "../application/contracts/commands/create-room.command";
-import { FindRoomsResponseDTO } from "./dto/response/find-rooms-response.dto";
-import { FindRoomsRequestQueryString } from "./dto/requests/find-rooms-request";
+import { FindRoomsQuery } from "../application/contracts/queries/find-rooms.query";
 import { CreateRoomRequestDTO } from "./dto/requests/create-room-request.dto";
+import { FindRoomsRequestQueryString } from "./dto/requests/find-rooms-request";
+import { FindRoomsResponseDTO } from "./dto/response/find-rooms-response.dto";
 
 @Controller("rooms")
 export class RoomController {

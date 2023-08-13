@@ -1,8 +1,10 @@
+import { RoomRepository } from "@/features/rooms/domain/repositories/room.repository";
+
 import { Inject } from "@nestjs/common";
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
+
 import { CreateRoomCommand } from "../../contracts/commands/create-room.command";
 import { InjectionToken } from "../../injection-token";
-import { RoomRepository } from "@/features/rooms/domain/repositories/room.repository";
 
 @CommandHandler(CreateRoomCommand)
 export class CreateRoomHandler implements ICommandHandler<CreateRoomCommand, void> {

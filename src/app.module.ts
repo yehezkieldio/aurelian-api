@@ -1,4 +1,5 @@
 import { Module } from "@nestjs/common";
+
 import { RoomsModule } from "./features/rooms/rooms.module";
 
 @Module({
