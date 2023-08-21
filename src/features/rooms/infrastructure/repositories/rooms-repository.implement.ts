@@ -23,6 +23,11 @@ export class RoomsRepositoryImplement implements RoomRepository {
         await writeConnection.manager.getRepository(RoomEntity).save(entities);
     }
 
+    public async update(data: Room | Room[]): Promise<void> {
+        console.log(data);
+        // TODO: implement this.
+    }
+
     private modelToEntity(model: Room): RoomEntity {
         const properties = JSON.parse(JSON.stringify(model)) as RoomProperties;
         return {
